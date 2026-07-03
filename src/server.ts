@@ -102,15 +102,13 @@ app.get("/api/users/:id", async (req: Request, res: Response) => {
         
         `, [id])
 
-   if(result.rows.length ===0){
-     res.status(500).json({
-      success: false,
-      message: "User not found",
-      data: {},
-    })
-   }
-
-
+    if (result.rows.length === 0) {
+      res.status(404).json({
+        success: false,
+        message: "User not found",
+        data: {},
+      })
+    }
 
     res.status(200).json({
       success: true,
@@ -127,6 +125,48 @@ app.get("/api/users/:id", async (req: Request, res: Response) => {
     })
   }
 })
+
+// update methored 
+
+
+app.put("/api/users/:id", async (req: Request, res: Response) => {
+ try {
+   const { id } = req.params;
+  const { name, password, age, is_active } = req.body;
+
+  // console.log("id:", id);
+  // console.log({ name, password, age, is_active });
+  
+  const result = await pool.query(`
+     
+    UPDATE users SET name=$1,password=$2,age=$3,is_active=$4 WHERE id=$5 RETURNING *
+    
+    `,[name, password,age,is_active,id],);
+    
+      if (result.rows.length === 0) {
+      res.status(404).json({
+        success: false,
+        message: "User not found",
+        
+      })
+    }
+
+
+
+      res.status(200).json({
+      success: true,
+      message: "User updated successfully",
+      data: result.rows[0],
+    })
+ } catch (error:any) {
+   res.status(500).json({
+      success: false,
+      message: error.message,
+      error: error,
+    })
+ }
+})
+
 
 
 
