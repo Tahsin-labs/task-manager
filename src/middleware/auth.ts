@@ -35,6 +35,17 @@ const auth = () => {
             })
         }
 
+        //  validate for is_active
+
+        if (!user.is_active) {
+            res.status(403).json({
+                success: false,
+                message: "forbidden!!",
+
+            })
+
+        }
+
         next()
     }
 }
