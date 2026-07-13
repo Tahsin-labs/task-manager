@@ -16,7 +16,8 @@ export const initDB = async () => {
       is_active BOOLEAN DEFAULT true,
       age INT,
       created_at TIMESTAMP DEFAULT NOW(),
-      updated_at TIMESTAMP DEFAULT NOW()
+      updated_at TIMESTAMP DEFAULT NOW(),
+      role VARCHAR(10) DEFAULT 'user'
       )
       `)
 
@@ -32,8 +33,6 @@ export const initDB = async () => {
     gender VARCHAR(10),
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW()
-
-     
     )
     
     `)
