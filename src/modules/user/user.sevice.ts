@@ -8,7 +8,7 @@ const createUserIntoDB = async (payload: IUser) => {
 const hashPassword= await bcrypt.hash(password,10);
 
     const result = await pool.query(`
-       INSERT INTO users (name, email , password ,age, role) VALUES($1,$2,$3,$4,COALESCE($5,'user')) RETURNING *
+       INSERT INTO users (name, email , password ,age, role) VALUES($1,$2,$3,$4,COALESCE($5,'contributor')) RETURNING *
       `, [name, email,hashPassword , age,role])
 //   for delete the password from result
     delete result.rows[0].password

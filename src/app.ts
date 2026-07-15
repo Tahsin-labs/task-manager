@@ -9,6 +9,9 @@ import logger from "./middleware/logger";
 import CookieParser from "cookie-parser"
 import cookieParser from "cookie-parser";
 import cors from "cors"
+import globalErrorHandler from "./middleware/globalErrorHandler";
+import { issueRoute } from "./modules/Issues/issue.route";
+
 const app: Application = express()
 const port = config.port;
 
@@ -33,7 +36,10 @@ app.get('/', (req: Request, res: Response) => {
 app.use("/api/users", userRoute)
 app.use("/api/profile", profileRoute)
 app.use("/api/auth", authRoute)
+app.use("/api/issues", issueRoute);
 
+// Global Error Handling Middleware
+app.use(globalErrorHandler);
 
 export default app
 

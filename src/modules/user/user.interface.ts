@@ -4,7 +4,8 @@ export interface IUser {
     password: string;
     age: number;
     is_active?: boolean;
-    role? : string; // admin , agent , user
+    // role? : string; // admin , agent , user
+    role?: "contributor" | "maintainer";
 }
 
 
