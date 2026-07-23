@@ -6,15 +6,10 @@ DevPulse is a backend REST API built for software teams to report bugs, request 
 
 ## Live URL
 
-API: https://your-live-api-url.com
+API: https://task-manager-psi-orpin.vercel.app/
 
 ---
 
-## GitHub Repository
-
-https://github.com/your-username/devpulse
-
----
 
 ## Features
 
